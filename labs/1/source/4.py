@@ -15,7 +15,6 @@ student_classes = [
 
 # Create an empty dictionary
 student_class_dict = {}
-
 # Add data into dictionary: student's name is key and student's classes are values
 for student_class in student_classes:
     if student_class[0] in student_class_dict:
@@ -27,7 +26,6 @@ for student_class in student_classes:
 both = []
 # Create list for holding students who are only taking one class
 single = []
-
 # Push data into 'both' and 'single' lists based on the number of values for each key
 for k, v in student_class_dict.items():
     if len(v) != 2:
