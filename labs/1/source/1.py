@@ -24,7 +24,7 @@ def contain_special_char(password):
     return any((char in special_chars) for char in password)
 
 
-def contains_both_cases(password):
+def contain_both_cases(password):
     """
     check if password contains both upper and lower case characters
     """
@@ -38,7 +38,7 @@ def password_validator(password):
     return True if (valid_width(password) and
                     contain_number(password) and
                     contain_special_char(password) and
-                    contains_both_cases(password)) else False
+                    contain_both_cases(password)) else False
 
 
 # Get user's password
