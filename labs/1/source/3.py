@@ -15,7 +15,6 @@ def find_triplets(numbers):
 
 
 # Sample inputs from lab 1
-user_numbers = [1, -7, 6, 2, -1, 2, 0, -2, 0]
+user_numbers = [1, 3, 6, 2, -1, 2, 8, -2, 9]
 print("Here are the triplets found the input provided above:")
-# This will print out all possible combinations (with duplicates due to duplicate inputs)
 find_triplets(user_numbers)
