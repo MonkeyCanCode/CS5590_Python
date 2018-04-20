@@ -1,3 +1,5 @@
+from ctypes import c_bool
+
 import numpy as np
 import re
 import itertools
@@ -25,23 +27,33 @@ def clean_str(string):
     return string.strip().lower()
 
 
-def load_data_and_labels(positive_data_file, negative_data_file):
+def load_data_and_labels(a_data_file, b_data_file, c_data_file, d_data_file, e_data_file):
     """
     Loads MR polarity data from files, splits the data into words and generates labels.
     Returns split sentences and labels.
     """
     # Load data from files
-    positive_examples = list(open(positive_data_file, "r").readlines())
-    positive_examples = [s.strip() for s in positive_examples]
-    negative_examples = list(open(negative_data_file, "r").readlines())
-    negative_examples = [s.strip() for s in negative_examples]
+    a_data = list(open(a_data_file, "r", encoding='UTF8').readlines())
+    a_data = [s.strip() for s in a_data]
+    b_data = list(open(b_data_file, "r", encoding='UTF8').readlines())
+    b_data = [s.strip() for s in b_data]
+    c_data = list(open(c_data_file, "r", encoding='UTF8').readlines())
+    c_data = [s.strip() for s in c_data]
+    d_data = list(open(d_data_file, "r", encoding='UTF8').readlines())
+    d_data = [s.strip() for s in d_data]
+    e_data = list(open(e_data_file, "r", encoding='UTF8').readlines())
+    e_data = [s.strip() for s in e_data]
+
     # Split by words
-    x_text = positive_examples + negative_examples
+    x_text = a_data + b_data + c_data + d_data + e_data
     x_text = [clean_str(sent) for sent in x_text]
     # Generate labels
-    positive_labels = [[0, 1] for _ in positive_examples]
-    negative_labels = [[1, 0] for _ in negative_examples]
-    y = np.concatenate([positive_labels, negative_labels], 0)
+    a_data_labels = [[1, 0, 0, 0, 0] for _ in a_data]
+    b_data_labels = [[0, 1, 0, 0, 0] for _ in a_data]
+    c_data_labels = [[0, 0, 1, 0, 0] for _ in a_data]
+    d_data_labels = [[0, 0, 0, 1, 0] for _ in a_data]
+    e_data_labels = [[0, 0, 0, 0, 1] for _ in a_data]
+    y = np.concatenate([a_data_labels, b_data_labels, c_data_labels, d_data_labels, e_data_labels], 0)
     return [x_text, y]
 
 

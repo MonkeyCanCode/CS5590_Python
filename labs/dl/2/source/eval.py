@@ -14,12 +14,15 @@ import csv
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("positive_data_file", "./data/rt-polaritydata/rt-polarity.pos", "Data source for the positive data.")
-tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity.neg", "Data source for the positive data.")
+tf.flags.DEFINE_string("fashion_7000", "./ICP_data/fashion_7000.txt", "fashion_7000.txt")
+tf.flags.DEFINE_string("finance_7000", "./ICP_data/finance_7000.txt", "finance_7000.txt")
+tf.flags.DEFINE_string("law_7000", "./ICP_data/law_7000.txt", "law_7000.txt")
+tf.flags.DEFINE_string("lifestyle_7000", "./ICP_data/lifestyle_7000.txt", "lifestyle_7000.txt")
+tf.flags.DEFINE_string("TestData", "./ICP_data/TestData", "TestData")
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/1510195745/checkpoints", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/1524195353/checkpoints", "Checkpoint directory from training run")
 tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 
 # Misc Parameters
@@ -36,7 +39,8 @@ print("")
 
 # CHANGE THIS: Load data. Load your own data here
 if FLAGS.eval_train:
-    x_raw, y_test = data_helpers.load_data_and_labels(FLAGS.positive_data_file, FLAGS.negative_data_file)
+    x_raw, y_test = data_helpers.load_data_and_labels(FLAGS.fashion_7000, FLAGS.finance_7000,
+                                                      FLAGS.law_7000, FLAGS.lifestyle_7000, FLAGS.TestData)
     y_test = np.argmax(y_test, axis=1)
 else:
     x_raw = ["a masterpiece four years in the making", "everything is off."]
